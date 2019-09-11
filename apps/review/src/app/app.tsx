@@ -71,31 +71,27 @@ export const App = () => {
         <h1>Board Game Hoard: Review</h1>
       </div>
       <TileGrid>
-    {games.map(game => {
-      return (
-        <a
-          href={'/' + game.id}
-          key={game.id}
-          style={{ textDecoration: 'none', color: 'inherit' }}
-        >
-          <Tile>
-            {game.image && (
-              <ImageWrapper>
-                <Image src={game.image} />
-              </ImageWrapper>
-            )}
-            <TileTitle>{game.name}</TileTitle>
-            <TileLeftCorner>
-              {ratingFormat(game.rating)}
-            </TileLeftCorner>
-            <TileRightCorner>
-              {currencyFormat(game.price)}
-            </TileRightCorner>
-          </Tile>
-        </a>
-      );
-    })}
-  </TileGrid>
+        {games.map(game => {
+          return (
+            <a
+              href={'/' + game.id}
+              key={game.id}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              <Tile>
+                {game.image && (
+                  <ImageWrapper>
+                    <Image src={game.image} />
+                  </ImageWrapper>
+                )}
+                <TileTitle>{game.name}</TileTitle>
+                <TileLeftCorner>{ratingFormat(game.rating)}</TileLeftCorner>
+                <TileRightCorner>{currencyFormat(game.price)}</TileRightCorner>
+              </Tile>
+            </a>
+          );
+        })}
+      </TileGrid>
     </>
   );
 };

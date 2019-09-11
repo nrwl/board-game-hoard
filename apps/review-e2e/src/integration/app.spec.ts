@@ -17,4 +17,9 @@ describe('review game list', () => {
       cy.contains('$45.00');
     });
   });
+
+  it('should navigate to game review details', () => {
+    cy.contains('a', 'Settlers in the Can').click();
+    cy.url().should('contain', 'review/settlers-in-the-can');
+  });
 });
