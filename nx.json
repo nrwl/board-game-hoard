@@ -19,6 +19,21 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "review-ui-tile": {
+      "tags": []
+    },
+    "review-util-formatters": {
+      "tags": []
+    },
+    "review-data-access-games": {
+      "tags": []
+    },
+    "review-feature-list": {
+      "tags": []
+    },
+    "review-feature-details": {
+      "tags": []
     }
   }
 }
