@@ -16,7 +16,15 @@
             "main": "apps/review/src/main.tsx",
             "polyfills": "apps/review/src/polyfills.ts",
             "tsConfig": "apps/review/tsconfig.app.json",
-            "assets": ["apps/review/src/favicon.ico", "apps/review/src/assets"],
+            "assets": [
+              "apps/review/src/favicon.ico",
+              "apps/review/src/assets",
+              {
+                "input": "libs/shared/assets",
+                "glob": "*.png",
+                "output": "assets"
+              }
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/babel"
@@ -218,9 +226,9 @@
         }
       }
     },
-    "review-util-formatters": {
-      "root": "libs/review/util-formatters",
-      "sourceRoot": "libs/review/util-formatters/src",
+    "shared-util-formatters": {
+      "root": "libs/shared/util-formatters",
+      "sourceRoot": "libs/shared/util-formatters/src",
       "projectType": "library",
       "schematics": {},
       "architect": {
@@ -228,19 +236,19 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "config": "libs/review/util-formatters/.eslintrc",
+            "config": "libs/shared/util-formatters/.eslintrc",
             "tsConfig": [
-              "libs/review/util-formatters/tsconfig.lib.json",
-              "libs/review/util-formatters/tsconfig.spec.json"
+              "libs/shared/util-formatters/tsconfig.lib.json",
+              "libs/shared/util-formatters/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/review/util-formatters/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/util-formatters/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/review/util-formatters/jest.config.js",
-            "tsConfig": "libs/review/util-formatters/tsconfig.spec.json"
+            "jestConfig": "libs/shared/util-formatters/jest.config.js",
+            "tsConfig": "libs/shared/util-formatters/tsconfig.spec.json"
           }
         }
       }
@@ -349,7 +357,15 @@
             "polyfills": "apps/store/src/polyfills.ts",
             "tsConfig": "apps/store/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/store/src/favicon.ico", "apps/store/src/assets"],
+            "assets": [
+              "apps/store/src/favicon.ico",
+              "apps/store/src/assets",
+              {
+                "input": "libs/shared/assets",
+                "glob": "*.png",
+                "output": "assets"
+              }
+            ],
             "styles": ["apps/store/src/styles.scss"],
             "scripts": []
           },
@@ -383,7 +399,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "store:build"
+            "browserTarget": "store:build",
+            "proxyConfig": "apps/review/proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ratingFormat } from '@bghoard/shared/util-formatters';
 
 @Pipe({
   name: 'rating'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class RatingPipe implements PipeTransform {
 
   transform(rating: number, ...args: any[]): string {
-    return (rating === undefined ? '?' : rating.toFixed(1)) + '/5';
+    return ratingFormat(rating);
   }
 
 }

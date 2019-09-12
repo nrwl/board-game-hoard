@@ -18,8 +18,8 @@
     "paths": {
       "@bghoard/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@bghoard/review/ui-tile": ["libs/review/ui-tile/src/index.ts"],
-      "@bghoard/review/util-formatters": [
-        "libs/review/util-formatters/src/index.ts"
+      "@bghoard/shared/util-formatters": [
+        "libs/shared/util-formatters/src/index.ts"
       ],
       "@bghoard/review/data-access-games": [
         "libs/review/data-access-games/src/index.ts"

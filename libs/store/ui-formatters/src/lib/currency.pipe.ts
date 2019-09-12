@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { currencyFormat } from '@bghoard/shared/util-formatters';
 
 @Pipe({
   name: 'currency'
@@ -6,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CurrencyPipe implements PipeTransform {
 
   transform(amount: number, ...args: any[]): string {
-    return '$' + amount.toFixed(2);
+    return currencyFormat(amount);
   }
 
 }

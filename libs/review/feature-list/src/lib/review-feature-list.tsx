@@ -10,7 +10,7 @@ import {
   TileRightCorner
 } from '@bghoard/review/ui-tile';
 import { useGames } from '@bghoard/review/data-access-games';
-import { currencyFormat, ratingFormat } from '@bghoard/review/util-formatters';
+import { currencyFormat, ratingFormat } from '@bghoard/shared/util-formatters';
 
 /* eslint-disable-next-line */
 export interface ReviewFeatureListProps {}
