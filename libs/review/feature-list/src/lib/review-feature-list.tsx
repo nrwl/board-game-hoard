@@ -1,16 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  TileGrid,
-  Tile,
-  ImageWrapper,
-  Image,
-  TileTitle,
-  TileLeftCorner,
-  TileRightCorner
-} from '@bghoard/review/ui-tile';
 import { useGames } from '@bghoard/review/data-access-games';
 import { currencyFormat, ratingFormat } from '@bghoard/shared/util-formatters';
+import '@bghoard/shared/ui-tile';
 
 /* eslint-disable-next-line */
 export interface ReviewFeatureListProps {}
@@ -18,7 +10,7 @@ export interface ReviewFeatureListProps {}
 export const ReviewFeatureList = (props: ReviewFeatureListProps) => {
   const games = useGames();
   return (
-    <TileGrid>
+    <bghoard-grid>
       {games.map(game => {
         return (
           <Link
@@ -26,24 +18,24 @@ export const ReviewFeatureList = (props: ReviewFeatureListProps) => {
             key={game.id}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            <Tile>
+            <bghoard-tile>
               {game.image && (
-                <ImageWrapper>
-                  <Image src={game.image} />
-                </ImageWrapper>
+                <bghoard-image-wrapper>
+                  <img src={game.image} />
+                </bghoard-image-wrapper>
               )}
-              <TileTitle>{game.name}</TileTitle>
-              <TileLeftCorner>
+              <bghoard-tile-title>{game.name}</bghoard-tile-title>
+              <bghoard-tile-left-corner>
                 {ratingFormat(game.rating)}
-              </TileLeftCorner>
-              <TileRightCorner>
+              </bghoard-tile-left-corner>
+              <bghoard-tile-right-corner>
                 {currencyFormat(game.price)}
-              </TileRightCorner>
-            </Tile>
+              </bghoard-tile-right-corner>
+            </bghoard-tile>
           </Link>
         );
       })}
-    </TileGrid>
+    </bghoard-grid>
   );
 };
 

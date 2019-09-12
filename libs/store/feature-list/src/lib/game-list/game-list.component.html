@@ -1,19 +1,20 @@
-<div class="grid">
+<bghoard-grid>
   <a
     *ngFor="let game of (games$ | async)"
     [routerLink]="'/' + game?.id"
-    class="grid__tile"
     style="text-decoration: none; color: inherit"
   >
-    <div class="image-wrapper" *ngIf="game.image">
-      <img [src]="game.image" />
-    </div>
-    <h2 class="tile__title">{{ game.name }}</h2>
-    <div class="tile__left-corner">
-      {{ game.rating | rating }}
-    </div>
-    <div class="tile__right-corner">
-      {{ game.price | currency }}
-    </div>
+    <bghoard-tile>
+      <bghoard-image-wrapper *ngIf="game.image">
+        <img [src]="game.image" />
+      </bghoard-image-wrapper>
+      <bghoard-tile-title>{{ game.name }}</bghoard-tile-title>
+      <bghoard-tile-left-corner>
+        {{ game.rating | rating }}
+      </bghoard-tile-left-corner>
+      <bghoard-tile-right-corner>
+        {{ game.price | currency }}
+      </bghoard-tile-right-corner>
+    </bghoard-tile>
   </a>
-</div>
+</bghoard-grid>

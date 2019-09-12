@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from '@bghoard/store/data-access-games';
+import '@bghoard/shared/ui-tile';
 
 @Component({
   selector: 'bghoard-game-list',

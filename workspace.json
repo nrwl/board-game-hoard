@@ -199,33 +199,6 @@
         }
       }
     },
-    "review-ui-tile": {
-      "root": "libs/review/ui-tile",
-      "sourceRoot": "libs/review/ui-tile/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:lint",
-          "options": {
-            "linter": "eslint",
-            "config": "libs/review/ui-tile/.eslintrc",
-            "tsConfig": [
-              "libs/review/ui-tile/tsconfig.lib.json",
-              "libs/review/ui-tile/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/review/ui-tile/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/review/ui-tile/jest.config.js",
-            "tsConfig": "libs/review/ui-tile/tsconfig.spec.json"
-          }
-        }
-      }
-    },
     "shared-util-formatters": {
       "root": "libs/shared/util-formatters",
       "sourceRoot": "libs/shared/util-formatters/src",
@@ -647,6 +620,31 @@
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "shared-ui-tile": {
+      "root": "libs/shared/ui-tile",
+      "sourceRoot": "libs/shared/ui-tile/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui-tile/tsconfig.lib.json",
+              "libs/shared/ui-tile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-tile/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui-tile/jest.config.js",
+            "tsConfig": "libs/shared/ui-tile/tsconfig.spec.json"
+          }
         }
       }
     }

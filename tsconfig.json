@@ -17,7 +17,6 @@
     "baseUrl": ".",
     "paths": {
       "@bghoard/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@bghoard/review/ui-tile": ["libs/review/ui-tile/src/index.ts"],
       "@bghoard/shared/util-formatters": [
         "libs/shared/util-formatters/src/index.ts"
       ],
@@ -39,7 +38,8 @@
       ],
       "@bghoard/store/data-access-cart": [
         "libs/store/data-access-cart/src/index.ts"
-      ]
+      ],
+      "@bghoard/shared/ui-tile": ["libs/shared/ui-tile/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
