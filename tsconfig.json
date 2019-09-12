@@ -27,6 +27,18 @@
       "@bghoard/review/feature-list": ["libs/review/feature-list/src/index.ts"],
       "@bghoard/review/feature-details": [
         "libs/review/feature-details/src/index.ts"
+      ],
+      "@bghoard/store/feature-list": ["libs/store/feature-list/src/index.ts"],
+      "@bghoard/store/feature-details": [
+        "libs/store/feature-details/src/index.ts"
+      ],
+      "@bghoard/store/feature-cart": ["libs/store/feature-cart/src/index.ts"],
+      "@bghoard/store/ui-formatters": ["libs/store/ui-formatters/src/index.ts"],
+      "@bghoard/store/data-access-games": [
+        "libs/store/data-access-games/src/index.ts"
+      ],
+      "@bghoard/store/data-access-cart": [
+        "libs/store/data-access-cart/src/index.ts"
       ]
     }
   },

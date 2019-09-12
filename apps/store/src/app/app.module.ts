@@ -8,7 +8,25 @@ import { RouterModule } from '@angular/router';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { initialNavigation: 'enabled' })
+    RouterModule.forRoot(
+      [
+        {
+          path: 'store-feature-list',
+          loadChildren: () =>
+            import('@bghoard/store/feature-list').then(
+              module => module.StoreFeatureListModule
+            )
+        },
+        {
+          path: 'store-feature-details',
+          loadChildren: () =>
+            import('@bghoard/store/feature-details').then(
+              module => module.StoreFeatureDetailsModule
+            )
+        }
+      ],
+      { initialNavigation: 'enabled' }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -443,6 +443,195 @@
           }
         }
       }
+    },
+    "store-feature-list": {
+      "projectType": "library",
+      "root": "libs/store/feature-list",
+      "sourceRoot": "libs/store/feature-list/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/feature-list/tsconfig.lib.json",
+              "libs/store/feature-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/feature-list/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/feature-list/jest.config.js",
+            "tsConfig": "libs/store/feature-list/tsconfig.spec.json",
+            "setupFile": "libs/store/feature-list/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-feature-details": {
+      "projectType": "library",
+      "root": "libs/store/feature-details",
+      "sourceRoot": "libs/store/feature-details/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/feature-details/tsconfig.lib.json",
+              "libs/store/feature-details/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/feature-details/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/feature-details/jest.config.js",
+            "tsConfig": "libs/store/feature-details/tsconfig.spec.json",
+            "setupFile": "libs/store/feature-details/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-feature-cart": {
+      "projectType": "library",
+      "root": "libs/store/feature-cart",
+      "sourceRoot": "libs/store/feature-cart/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/feature-cart/tsconfig.lib.json",
+              "libs/store/feature-cart/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/feature-cart/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/feature-cart/jest.config.js",
+            "tsConfig": "libs/store/feature-cart/tsconfig.spec.json",
+            "setupFile": "libs/store/feature-cart/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-ui-formatters": {
+      "projectType": "library",
+      "root": "libs/store/ui-formatters",
+      "sourceRoot": "libs/store/ui-formatters/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/ui-formatters/tsconfig.lib.json",
+              "libs/store/ui-formatters/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/ui-formatters/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/ui-formatters/jest.config.js",
+            "tsConfig": "libs/store/ui-formatters/tsconfig.spec.json",
+            "setupFile": "libs/store/ui-formatters/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-data-access-games": {
+      "projectType": "library",
+      "root": "libs/store/data-access-games",
+      "sourceRoot": "libs/store/data-access-games/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/data-access-games/tsconfig.lib.json",
+              "libs/store/data-access-games/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/data-access-games/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/data-access-games/jest.config.js",
+            "tsConfig": "libs/store/data-access-games/tsconfig.spec.json",
+            "setupFile": "libs/store/data-access-games/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-data-access-cart": {
+      "projectType": "library",
+      "root": "libs/store/data-access-cart",
+      "sourceRoot": "libs/store/data-access-cart/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/data-access-cart/tsconfig.lib.json",
+              "libs/store/data-access-cart/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/data-access-cart/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/data-access-cart/jest.config.js",
+            "tsConfig": "libs/store/data-access-cart/tsconfig.spec.json",
+            "setupFile": "libs/store/data-access-cart/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
@@ -498,7 +687,8 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "style": "scss"
     }
   },
   "defaultProject": "review"
