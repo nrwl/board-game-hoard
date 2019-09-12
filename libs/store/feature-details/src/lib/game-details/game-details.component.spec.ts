@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { GameDetailsComponent } from './game-details.component';
+import { StoreUiFormattersModule } from '@bghoard/store/ui-formatters';
 
 describe('GameDetailsComponent', () => {
   let component: GameDetailsComponent;
@@ -8,9 +11,9 @@ describe('GameDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameDetailsComponent ]
-    })
-    .compileComponents();
+      imports: [StoreUiFormattersModule, HttpClientTestingModule, RouterTestingModule],
+      declarations: [GameDetailsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

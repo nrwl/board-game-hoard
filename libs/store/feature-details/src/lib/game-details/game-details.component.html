@@ -1,1 +1,22 @@
-<p>game-details works!</p>
+<p>
+  <a routerLink="../">All Games</a>
+</p>
+<ng-container *ngIf="(game$ | async) as game">
+  <img [src]="game.image" />
+  <h2>{{ game.name }}</h2>
+  <p>{{ game.description }}</p>
+  <dl>
+    <dt>Rating</dt>
+    <dd>
+      {{ game.rating | rating }}
+    </dd>
+    <dt>Price</dt>
+    <dd>
+      {{ game.price | currency }}
+    </dd>
+  </dl>
+
+  <button (click)="addToCart({ game: game.id, quantity: 1 })">
+    Add to Cart
+  </button>
+</ng-container>

@@ -1,0 +1,49 @@
+.grid {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+}
+
+.grid__tile {
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  display: block;
+  min-width: 200px;
+  color: inherit;
+  text-decoration: none;
+  margin: 0.5em;
+  &:hover {
+    border-color: #5159ea;
+  }
+}
+
+.image-wrapper {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid 1px #ccc;
+  & > img {
+    max-width: 100%;
+    min-height: 100%;
+  }
+}
+
+.tile__title {
+  text-align: center;
+}
+
+.tile__left-corner {
+  display: block;
+  float: left;
+  margin: -0.5em 0 1em 0.5em;
+}
+
+.tile__right-corner {
+  display: block;
+  float: right;
+  margin: -0.5em 0.5em 1em 0;
+}

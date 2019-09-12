@@ -1,1 +1,12 @@
-<p>cart works!</p>
+<fieldset>
+    <legend>Cart</legend>
+    <div *ngFor="let item of (cart$ | async)">
+      <a [routerLink]="'/' + item.game.id">{{ item.game.name }}</a> x
+      {{ item.quantity }}
+      <button (click)="removeItem(item.game.id)">
+        x
+      </button>
+    </div>
+    <button (click)="checkout()">Checkout</button>
+  </fieldset>
+  

@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RatingPipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
-    return null;
+  transform(rating: number, ...args: any[]): string {
+    return (rating === undefined ? '?' : rating.toFixed(1)) + '/5';
   }
 
 }
