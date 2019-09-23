@@ -202,6 +202,11 @@
   resolved "https://registry.yarnpkg.com/@angular-eslint/builder/-/builder-0.0.1-alpha.16.tgz#c8af30ed1e778138139353627ec8d51543237e12"
   integrity sha512-VwpFd2fcp7FCEmOtef9VkteFwyVpIzciNn0pvlWvHgwJWGyKyT5NVRpVvUAWBdHgja1jl67h0B9uDFMqWUBTjw==
 
+"@angular-eslint/builder@^0.0.1-alpha.17":
+  version "0.0.1-alpha.17"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/builder/-/builder-0.0.1-alpha.17.tgz#e67cc054c0aa4a0b56c84c82f8196d0ebac72d9b"
+  integrity sha512-ULmEjyhoozljKbHvIUaVKjb0efAyh8R/vcoo2tCErrTBIEsFcpO0VtiSsVoCPWKhodHKteAimWSfpcyVYcWuOw==
+
 "@angular/animations@^8.0.0":
   version "8.2.5"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-8.2.5.tgz#847296d12690c1e385f6f790fbb472d0e4aabde9"

@@ -16,10 +16,11 @@
             "main": "apps/review/src/main.tsx",
             "polyfills": "apps/review/src/polyfills.ts",
             "tsConfig": "apps/review/tsconfig.app.json",
-            "assets": [
-              "apps/review/src/favicon.ico",
-              "apps/review/src/assets"
-            ],
+            "assets": ["apps/review/src/favicon.ico", "apps/review/src/assets", {
+              "input": "libs/shared/assets/src/lib",
+              "glob": "*.png",
+              "output": "assets"
+            }],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/babel"
@@ -325,10 +326,11 @@
             "polyfills": "apps/store/src/polyfills.ts",
             "tsConfig": "apps/store/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "apps/store/src/favicon.ico",
-              "apps/store/src/assets"
-            ],
+            "assets": ["apps/store/src/favicon.ico", "apps/store/src/assets", {
+              "input": "libs/shared/assets/src/lib",
+              "glob": "*.png",
+              "output": "assets"
+            }],
             "styles": ["apps/store/src/styles.scss"],
             "scripts": []
           },
@@ -634,6 +636,33 @@
           "options": {
             "jestConfig": "libs/shared/ui-tile/jest.config.js",
             "tsConfig": "libs/shared/ui-tile/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/shared/assets/.eslintrc",
+            "tsConfig": [
+              "libs/shared/assets/tsconfig.lib.json",
+              "libs/shared/assets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/assets/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/assets/jest.config.js",
+            "tsConfig": "libs/shared/assets/tsconfig.spec.json"
           }
         }
       }
