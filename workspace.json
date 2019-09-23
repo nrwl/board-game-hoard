@@ -18,12 +18,7 @@
             "tsConfig": "apps/review/tsconfig.app.json",
             "assets": [
               "apps/review/src/favicon.ico",
-              "apps/review/src/assets",
-              {
-                "input": "libs/shared/assets",
-                "glob": "*.png",
-                "output": "assets"
-              }
+              "apps/review/src/assets"
             ],
             "styles": [],
             "scripts": [],
@@ -332,12 +327,7 @@
             "aot": false,
             "assets": [
               "apps/store/src/favicon.ico",
-              "apps/store/src/assets",
-              {
-                "input": "libs/shared/assets",
-                "glob": "*.png",
-                "output": "assets"
-              }
+              "apps/store/src/assets"
             ],
             "styles": ["apps/store/src/styles.scss"],
             "scripts": []
