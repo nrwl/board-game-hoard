@@ -1,0 +1,4 @@
+# https://help.github.com/en/articles/about-code-owners
+
+/apps/store @bghoard/store @isaacplmann victor@nrwl.io
+/libs/store @bghoard/store @isaacplmann victor@nrwl.io
