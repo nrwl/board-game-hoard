@@ -9,60 +9,125 @@
   },
   "projects": {
     "review": {
-      "tags": [],
+      "tags": [
+        "type:app",
+        "scope:review",
+        "platform:web",
+        "stability:production"
+      ],
       "implicitDependencies": ["shared-assets"]
     },
     "review-e2e": {
-      "tags": []
+      "tags": ["type:e2e", "scope:review", "stability:production"]
     },
     "api": {
-      "tags": []
+      "tags": ["type:app", "platform:node", "stability:production"]
     },
     "api-interfaces": {
-      "tags": ["type:util"]
+      "tags": [
+        "type:util",
+        "scope:shared",
+        "platform:any",
+        "stability:production"
+      ]
     },
     "shared-util-formatters": {
-      "tags": ["type:util"]
+      "tags": [
+        "type:util",
+        "scope:shared",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "review-data-access-games": {
-      "tags": ["type:data-access"]
+      "tags": [
+        "type:data-access",
+        "scope:review",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "review-feature-list": {
-      "tags": ["type:feature"]
+      "tags": [
+        "type:feature",
+        "scope:review",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "review-feature-details": {
-      "tags": ["type:feature"]
+      "tags": [
+        "type:feature",
+        "scope:review",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store-e2e": {
-      "tags": []
+      "tags": ["type:e2e", "scope:store", "stability:production"]
     },
     "store": {
-      "tags": [],
+      "tags": [
+        "type:app",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ],
       "implicitDependencies": ["shared-assets"]
     },
     "store-feature-list": {
-      "tags": ["type:feature"]
+      "tags": [
+        "type:feature",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store-feature-details": {
-      "tags": ["type:feature"]
+      "tags": [
+        "type:feature",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store-feature-cart": {
-      "tags": ["type:feature"]
+      "tags": [
+        "type:feature",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store-ui-formatters": {
-      "tags": ["type:ui"]
+      "tags": ["type:ui", "scope:store", "platform:web", "stability:production"]
     },
     "store-data-access-games": {
-      "tags": ["type:data-access"]
+      "tags": [
+        "type:data-access",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store-data-access-cart": {
-      "tags": ["type:data-access"]
+      "tags": [
+        "type:data-access",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "shared-ui-tile": {
-      "tags": ["type:ui"]
+      "tags": [
+        "type:ui",
+        "scope:shared",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "shared-assets": {
-      "tags": ["type:util"]
+      "tags": ["type:util", "scope:shared", "stability:production"]
     }
   }
 }

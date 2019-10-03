@@ -1,11 +1,7 @@
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-
-import {ReviewFeatureDetails} from './review-feature-details';
+import { cleanup } from '@testing-library/react';
 
 describe(' ReviewFeatureDetails', () => {
   afterEach(cleanup);
 
-  it('should render successfully', () => {
-  });
+  it('should render successfully', () => {});
 });

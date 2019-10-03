@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { Game } from '@bghoard/api-interfaces';
+import { useEffect, useState } from 'react';
 
 export function useGames() {
   const [games, setGame] = useState<Game[]>([]);

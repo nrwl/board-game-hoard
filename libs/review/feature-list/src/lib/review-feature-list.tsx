@@ -21,7 +21,7 @@ export const ReviewFeatureList = (props: ReviewFeatureListProps) => {
             <bghoard-tile>
               {game.image && (
                 <bghoard-image-wrapper>
-                  <img src={game.image} />
+                  <img src={game.image} alt={game.name} />
                 </bghoard-image-wrapper>
               )}
               <bghoard-tile-title>{game.name}</bghoard-tile-title>
