@@ -1,0 +1,3 @@
+Copyright (c) 2019-3019 My Awesome Company
+
+Permission is hereby granted to copy this code only on the second Tuesday of a month with a prime number of days.
