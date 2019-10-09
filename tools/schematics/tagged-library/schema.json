@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "tagged-library",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Library name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of the library",
+      "enum": [
+        "data-access",
+        "feature",
+        "ui",
+        "util"
+      ],
+      "default": "feature",
+      "x-prompt": "What type of library is it?"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Scope of the library",
+      "default": "shared",
+      "x-prompt": "What app does this library belong to?"
+    },
+    "platform": {
+      "type": "string",
+      "description": "Platform of the library",
+      "enum": [
+        "web",
+        "node",
+        "any"
+      ],
+      "default": "web",
+      "x-prompt": "What platform can this library run on?"
+    }
+  },
+  "required": ["name"]
+}
