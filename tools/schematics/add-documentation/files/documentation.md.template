@@ -1,0 +1,5 @@
+Documentation for <%= projectName %>
+
+This is written by <%= author %> (whose favorite color is <%= favoriteColor %>)
+
+For more information, see the internal wiki at http://example.com/<%= dasherize(author) %>/<%= dasherize(projectName) %>
