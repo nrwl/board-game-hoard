@@ -80,6 +80,16 @@
             "jestConfig": "apps/review/jest.config.js",
             "tsConfig": "apps/review/tsconfig.spec.json"
           }
+        },
+        "doc": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx typedoc apps/review --exclude **/*.spec.tsx --tsconfig apps/review/tsconfig.app.json"
+              }
+            ]
+          }
         }
       }
     },
@@ -395,6 +405,16 @@
             "jestConfig": "apps/store/jest.config.js",
             "tsConfig": "apps/store/tsconfig.spec.json",
             "setupFile": "apps/store/src/test-setup.ts"
+          }
+        },
+        "doc": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx typedoc apps/store"
+              }
+            ]
           }
         }
       }
