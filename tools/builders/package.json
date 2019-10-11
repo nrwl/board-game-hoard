@@ -1,0 +1,5 @@
+{
+    "name": "local-builders",
+    "private": true,
+    "builders": "./builders.json"
+}

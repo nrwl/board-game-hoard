@@ -1,0 +1,13 @@
+{
+  "title": "Typedoc",
+  "description": "Typedoc",
+  "type": "object",
+  "properties": {
+    "outputDir": {
+      "type": "string",
+      "description": "Path to the output directory",
+      "default": "docs"
+    }
+  },
+  "required": []
+}
