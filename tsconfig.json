@@ -8,6 +8,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "target": "es2015",
     "module": "esnext",
     "typeRoots": ["node_modules/@types"],

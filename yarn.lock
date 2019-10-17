@@ -4419,6 +4419,11 @@ eslint-plugin-jsx-a11y@6.2.3, eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
+eslint-plugin-local-rules@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-local-rules/-/eslint-plugin-local-rules-0.1.1.tgz#4fa5921389383f10cc1e6cfeb1c24e11597e8cef"
+  integrity sha512-+Wlic7MSxhVeGJT7a8vf7thVnzlRiessyHNaaOFT7PFlQS6Ff1oMO9vD803CSI5y6Nhu/+f+bVWGUDf8SRDxvg==
+
 eslint-plugin-react-hooks@1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.6.1.tgz#3c66a5515ea3e0a221ffc5d4e75c971c217b1a4c"
