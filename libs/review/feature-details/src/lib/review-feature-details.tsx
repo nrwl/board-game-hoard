@@ -50,7 +50,7 @@ export const ReviewFeatureDetails = ({ gameId }) => {
       <p>{game.description}</p>
       <dl>
         <dt>Rating:</dt>
-        <dd>{ratingFormat(game.rating)}</dd>
+        <dd>{ratingFormat(game.rating, 5)}</dd>
         <br />
         <dt>Price:</dt>
         <dd>{currencyFormat(game.price)}</dd>
@@ -100,7 +100,7 @@ export const ReviewFeatureDetails = ({ gameId }) => {
           style={{ borderBottom: 'solid 1px #ccc', marginLeft: '1em' }}
         >
           <p>
-            <strong>{ratingFormat(review.rating)}</strong>
+            <strong>{ratingFormat(review.rating, 5)}</strong>
           </p>
           <p>{review.content}</p>
         </article>

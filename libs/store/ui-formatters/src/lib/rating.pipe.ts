@@ -7,7 +7,7 @@ import { ratingFormat } from '@bghoard/shared/util-formatters';
 export class RatingPipe implements PipeTransform {
 
   transform(rating: number, ...args: any[]): string {
-    return ratingFormat(rating);
+    return ratingFormat(rating, 5);
   }
 
 }

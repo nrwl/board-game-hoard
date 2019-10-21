@@ -6,15 +6,33 @@
     "jest": true,
     "node": true
   },
-  "settings": { "react": { "version": "detect" } },
-  "plugins": ["import", "jsx-a11y", "react", "react-hooks"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
     "array-callback-return": "warn",
-    "dot-location": ["warn", "property"],
-    "eqeqeq": ["warn", "smart"],
+    "dot-location": [
+      "warn",
+      "property"
+    ],
+    "eqeqeq": [
+      "warn",
+      "smart"
+    ],
     "new-parens": "warn",
     "no-caller": "warn",
-    "no-cond-assign": ["warn", "except-parens"],
+    "no-cond-assign": [
+      "warn",
+      "except-parens"
+    ],
     "no-const-assign": "warn",
     "no-control-regex": "warn",
     "no-delete-var": "warn",
@@ -34,17 +52,46 @@
     "no-invalid-regexp": "warn",
     "no-iterator": "warn",
     "no-label-var": "warn",
-    "no-labels": ["warn", { "allowLoop": true, "allowSwitch": false }],
+    "no-labels": [
+      "warn",
+      {
+        "allowLoop": true,
+        "allowSwitch": false
+      }
+    ],
     "no-lone-blocks": "warn",
     "no-loop-func": "warn",
     "no-mixed-operators": [
       "warn",
       {
         "groups": [
-          ["&", "|", "^", "~", "<<", ">>", ">>>"],
-          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-          ["&&", "||"],
-          ["in", "instanceof"]
+          [
+            "&",
+            "|",
+            "^",
+            "~",
+            "<<",
+            ">>",
+            ">>>"
+          ],
+          [
+            "==",
+            "!=",
+            "===",
+            "!==",
+            ">",
+            ">=",
+            "<",
+            "<="
+          ],
+          [
+            "&&",
+            "||"
+          ],
+          [
+            "in",
+            "instanceof"
+          ]
         ],
         "allowSamePrecedence": false
       }
@@ -61,7 +108,10 @@
     "no-octal-escape": "warn",
     "no-redeclare": "warn",
     "no-regex-spaces": "warn",
-    "no-restricted-syntax": ["warn", "WithStatement"],
+    "no-restricted-syntax": [
+      "warn",
+      "WithStatement"
+    ],
     "no-script-url": "warn",
     "no-self-assign": "warn",
     "no-self-compare": "warn",
@@ -158,9 +208,18 @@
     "no-whitespace-before-property": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "require-yield": "warn",
-    "rest-spread-spacing": ["warn", "never"],
-    "strict": ["warn", "never"],
-    "unicode-bom": ["warn", "never"],
+    "rest-spread-spacing": [
+      "warn",
+      "never"
+    ],
+    "strict": [
+      "warn",
+      "never"
+    ],
+    "unicode-bom": [
+      "warn",
+      "never"
+    ],
     "use-isnan": "warn",
     "valid-typeof": "warn",
     "no-restricted-properties": [
@@ -180,12 +239,23 @@
     "import/first": "error",
     "import/no-amd": "error",
     "import/no-webpack-loader-syntax": "error",
-    "react/forbid-foreign-prop-types": ["warn", { "allowInPropTypes": true }],
+    "react/forbid-foreign-prop-types": [
+      "warn",
+      {
+        "allowInPropTypes": true
+      }
+    ],
     "react/jsx-no-comment-textnodes": "warn",
     "react/jsx-no-duplicate-props": "warn",
     "react/jsx-no-target-blank": "warn",
     "react/jsx-no-undef": "error",
-    "react/jsx-pascal-case": ["warn", { "allowAllCaps": true, "ignore": [] }],
+    "react/jsx-pascal-case": [
+      "warn",
+      {
+        "allowAllCaps": true,
+        "ignore": []
+      }
+    ],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "react/no-danger-with-children": "warn",
@@ -200,7 +270,12 @@
     "jsx-a11y/anchor-has-content": "warn",
     "jsx-a11y/anchor-is-valid": [
       "warn",
-      { "aspects": ["noHref", "invalidHref"] }
+      {
+        "aspects": [
+          "noHref",
+          "invalidHref"
+        ]
+      }
     ],
     "jsx-a11y/aria-activedescendant-has-tabindex": "warn",
     "jsx-a11y/aria-props": "warn",
@@ -237,10 +312,15 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { "args": "none", "ignoreRestSiblings": true }
+      {
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
     ],
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "warn"
   },
-  "extends": ["../../../.eslintrc"]
+  "extends": [
+    "../../../.eslintrc"
+  ]
 }
