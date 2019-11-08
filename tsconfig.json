@@ -42,7 +42,9 @@
         "libs/store/data-access-cart/src/index.ts"
       ],
       "@bghoard/shared/ui-tile": ["libs/shared/ui-tile/src/index.ts"],
-      "@bghoard/shared/assets": ["libs/shared/assets/src/index.ts"]
+      "@bghoard/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@bghoard/react-publish": ["libs/react-publish/src/index.ts"],
+      "@bghoard/angular-publish": ["libs/angular-publish/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

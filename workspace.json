@@ -16,11 +16,15 @@
             "main": "apps/review/src/main.tsx",
             "polyfills": "apps/review/src/polyfills.ts",
             "tsConfig": "apps/review/tsconfig.app.json",
-            "assets": ["apps/review/src/favicon.ico", "apps/review/src/assets", {
-              "input": "libs/shared/assets/src/lib",
-              "glob": "*.png",
-              "output": "assets"
-            }],
+            "assets": [
+              "apps/review/src/favicon.ico",
+              "apps/review/src/assets",
+              {
+                "input": "libs/shared/assets/src/lib",
+                "glob": "*.png",
+                "output": "assets"
+              }
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/babel"
@@ -332,11 +336,15 @@
             "polyfills": "apps/store/src/polyfills.ts",
             "tsConfig": "apps/store/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/store/src/favicon.ico", "apps/store/src/assets", {
-              "input": "libs/shared/assets/src/lib",
-              "glob": "*.png",
-              "output": "assets"
-            }],
+            "assets": [
+              "apps/store/src/favicon.ico",
+              "apps/store/src/assets",
+              {
+                "input": "libs/shared/assets/src/lib",
+                "glob": "*.png",
+                "output": "assets"
+              }
+            ],
             "styles": ["apps/store/src/styles.scss"],
             "scripts": []
           },
@@ -676,6 +684,82 @@
             "jestConfig": "libs/shared/assets/jest.config.js",
             "tsConfig": "libs/shared/assets/tsconfig.spec.json"
           }
+        }
+      }
+    },
+    "react-publish": {
+      "root": "libs/react-publish",
+      "sourceRoot": "libs/react-publish/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/react-publish/.eslintrc",
+            "tsConfig": [
+              "libs/react-publish/tsconfig.lib.json",
+              "libs/react-publish/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/react-publish/**"]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:bundle",
+          "options": {
+            "outputPath": "dist/libs/react-publish",
+            "tsConfig": "libs/react-publish/tsconfig.lib.json",
+            "project": "libs/react-publish/package.json",
+            "entryFile": "libs/react-publish/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/react-publish/jest.config.js",
+            "tsConfig": "libs/react-publish/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "angular-publish": {
+      "projectType": "library",
+      "root": "libs/angular-publish",
+      "sourceRoot": "libs/angular-publish/src",
+      "prefix": "bghoard",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/angular-publish/tsconfig.lib.json",
+            "project": "libs/angular-publish/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-publish/tsconfig.lib.json",
+              "libs/angular-publish/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/angular-publish/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-publish/jest.config.js",
+            "tsConfig": "libs/angular-publish/tsconfig.spec.json",
+            "setupFile": "libs/angular-publish/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

@@ -128,6 +128,12 @@
     },
     "shared-assets": {
       "tags": ["type:util", "scope:shared", "stability:production"]
+    },
+    "react-publish": {
+      "tags": []
+    },
+    "angular-publish": {
+      "tags": []
     }
   }
 }
