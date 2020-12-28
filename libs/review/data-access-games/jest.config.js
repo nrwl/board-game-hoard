@@ -1,9 +1,10 @@
 module.exports = {
-  name: 'review-data-access-games',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest'
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../../coverage/libs/review/data-access-games'
+  coverageDirectory: '../../../coverage/libs/review/data-access-games',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'review-data-access-games',
 };

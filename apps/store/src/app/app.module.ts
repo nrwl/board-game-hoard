@@ -30,7 +30,7 @@ import { APP_BASE_HREF } from '@angular/common';
             )
         }
       ],
-      { initialNavigation: 'enabled' }
+      { initialNavigation: 'enabled', relativeLinkResolution: 'legacy' }
     )
   ],
   providers: [

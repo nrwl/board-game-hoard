@@ -52,7 +52,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/web:dev-server",
@@ -67,23 +70,27 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "apps/review/.eslintrc",
-            "tsConfig": [
-              "apps/review/tsconfig.app.json",
-              "apps/review/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/review/**"]
+            "lintFilePatterns": [
+              "apps/review/**/*.ts",
+              "apps/review/**/*.tsx",
+              "apps/review/**/*.spec.ts",
+              "apps/review/**/*.spec.tsx",
+              "apps/review/**/*.spec.js",
+              "apps/review/**/*.spec.jsx",
+              "apps/review/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/review/jest.config.js",
-            "tsConfig": "apps/review/tsconfig.spec.json"
-          }
+            "jestConfig": "apps/review/jest.config.js"
+          },
+          "outputs": [
+            "coverage/apps/review"
+          ]
         },
         "doc": {
           "builder": "./tools/builders:typedoc",
@@ -112,12 +119,11 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "apps/review-e2e/.eslintrc",
-            "tsConfig": ["apps/review-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/review-e2e/**"]
+            "lintFilePatterns": [
+              "apps/review-e2e/src/**/*.ts"
+            ]
           }
         }
       }
@@ -135,7 +141,9 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": [
+              "apps/api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -149,7 +157,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@nrwl/node:execute",
@@ -158,23 +169,23 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "apps/api/.eslintrc",
-            "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/api/**"]
+            "lintFilePatterns": [
+              "apps/api/**/*.ts",
+              "apps/api/**/*.spec.ts",
+              "apps/api/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "tsConfig": "apps/api/tsconfig.spec.json"
-          }
+            "jestConfig": "apps/api/jest.config.js"
+          },
+          "outputs": [
+            "coverage/apps/api"
+          ]
         }
       }
     },
@@ -185,23 +196,26 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/api-interfaces/.eslintrc",
-            "tsConfig": [
-              "libs/api-interfaces/tsconfig.lib.json",
-              "libs/api-interfaces/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/api-interfaces/**"]
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts",
+              "libs/api-interfaces/**/*.spec.ts",
+              "libs/api-interfaces/**/*.spec.tsx",
+              "libs/api-interfaces/**/*.spec.js",
+              "libs/api-interfaces/**/*.spec.jsx",
+              "libs/api-interfaces/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/api-interfaces/jest.config.js",
-            "tsConfig": "libs/api-interfaces/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/api-interfaces/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/api-interfaces"
+          ]
         }
       }
     },
@@ -212,23 +226,27 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/shared/util-formatters/.eslintrc",
-            "tsConfig": [
-              "libs/shared/util-formatters/tsconfig.lib.json",
-              "libs/shared/util-formatters/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/util-formatters/**"]
+            "lintFilePatterns": [
+              "libs/shared/util-formatters/**/*.ts",
+              "libs/shared/util-formatters/**/*.tsx",
+              "libs/shared/util-formatters/**/*.spec.ts",
+              "libs/shared/util-formatters/**/*.spec.tsx",
+              "libs/shared/util-formatters/**/*.spec.js",
+              "libs/shared/util-formatters/**/*.spec.jsx",
+              "libs/shared/util-formatters/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/util-formatters/jest.config.js",
-            "tsConfig": "libs/shared/util-formatters/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/shared/util-formatters/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/shared/util-formatters"
+          ]
         }
       }
     },
@@ -239,26 +257,27 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/review/data-access-games/.eslintrc",
-            "tsConfig": [
-              "libs/review/data-access-games/tsconfig.lib.json",
-              "libs/review/data-access-games/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/review/data-access-games/**"
+            "lintFilePatterns": [
+              "libs/review/data-access-games/**/*.ts",
+              "libs/review/data-access-games/**/*.tsx",
+              "libs/review/data-access-games/**/*.spec.ts",
+              "libs/review/data-access-games/**/*.spec.tsx",
+              "libs/review/data-access-games/**/*.spec.js",
+              "libs/review/data-access-games/**/*.spec.jsx",
+              "libs/review/data-access-games/**/*.d.ts"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/review/data-access-games/jest.config.js",
-            "tsConfig": "libs/review/data-access-games/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/review/data-access-games/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/review/data-access-games"
+          ]
         }
       }
     },
@@ -269,23 +288,27 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/review/feature-list/.eslintrc",
-            "tsConfig": [
-              "libs/review/feature-list/tsconfig.lib.json",
-              "libs/review/feature-list/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/review/feature-list/**"]
+            "lintFilePatterns": [
+              "libs/review/feature-list/**/*.ts",
+              "libs/review/feature-list/**/*.tsx",
+              "libs/review/feature-list/**/*.spec.ts",
+              "libs/review/feature-list/**/*.spec.tsx",
+              "libs/review/feature-list/**/*.spec.js",
+              "libs/review/feature-list/**/*.spec.jsx",
+              "libs/review/feature-list/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/review/feature-list/jest.config.js",
-            "tsConfig": "libs/review/feature-list/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/review/feature-list/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/review/feature-list"
+          ]
         }
       }
     },
@@ -296,23 +319,27 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/review/feature-details/.eslintrc",
-            "tsConfig": [
-              "libs/review/feature-details/tsconfig.lib.json",
-              "libs/review/feature-details/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/review/feature-details/**"]
+            "lintFilePatterns": [
+              "libs/review/feature-details/**/*.ts",
+              "libs/review/feature-details/**/*.tsx",
+              "libs/review/feature-details/**/*.spec.ts",
+              "libs/review/feature-details/**/*.spec.tsx",
+              "libs/review/feature-details/**/*.spec.js",
+              "libs/review/feature-details/**/*.spec.jsx",
+              "libs/review/feature-details/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/review/feature-details/jest.config.js",
-            "tsConfig": "libs/review/feature-details/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/review/feature-details/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/review/feature-details"
+          ]
         }
       }
     },
@@ -345,7 +372,9 @@
                 "output": "assets"
               }
             ],
-            "styles": ["apps/store/src/styles.scss"],
+            "styles": [
+              "apps/store/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -359,7 +388,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -373,7 +401,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -400,16 +431,20 @@
               "apps/store/tsconfig.app.json",
               "apps/store/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/store/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/store/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/store/jest.config.js",
-            "tsConfig": "apps/store/tsconfig.spec.json",
-            "setupFile": "apps/store/src/test-setup.ts"
-          }
+            "jestConfig": "apps/store/jest.config.js"
+          },
+          "outputs": [
+            "coverage/apps/store"
+          ]
         },
         "doc": {
           "builder": "./tools/builders:typedoc",
@@ -440,8 +475,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/store-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/store-e2e/**"]
+            "tsConfig": [
+              "apps/store-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/store-e2e/**"
+            ]
           }
         }
       }
@@ -459,16 +499,20 @@
               "libs/store/feature-list/tsconfig.lib.json",
               "libs/store/feature-list/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/feature-list/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/feature-list/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/feature-list/jest.config.js",
-            "tsConfig": "libs/store/feature-list/tsconfig.spec.json",
-            "setupFile": "libs/store/feature-list/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/feature-list/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/feature-list"
+          ]
         }
       },
       "schematics": {
@@ -490,16 +534,20 @@
               "libs/store/feature-details/tsconfig.lib.json",
               "libs/store/feature-details/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/feature-details/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/feature-details/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/feature-details/jest.config.js",
-            "tsConfig": "libs/store/feature-details/tsconfig.spec.json",
-            "setupFile": "libs/store/feature-details/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/feature-details/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/feature-details"
+          ]
         }
       },
       "schematics": {
@@ -521,16 +569,20 @@
               "libs/store/feature-cart/tsconfig.lib.json",
               "libs/store/feature-cart/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/feature-cart/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/feature-cart/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/feature-cart/jest.config.js",
-            "tsConfig": "libs/store/feature-cart/tsconfig.spec.json",
-            "setupFile": "libs/store/feature-cart/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/feature-cart/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/feature-cart"
+          ]
         }
       },
       "schematics": {
@@ -552,16 +604,20 @@
               "libs/store/ui-formatters/tsconfig.lib.json",
               "libs/store/ui-formatters/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/ui-formatters/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/ui-formatters/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/ui-formatters/jest.config.js",
-            "tsConfig": "libs/store/ui-formatters/tsconfig.spec.json",
-            "setupFile": "libs/store/ui-formatters/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/ui-formatters/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/ui-formatters"
+          ]
         }
       },
       "schematics": {
@@ -592,10 +648,11 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/data-access-games/jest.config.js",
-            "tsConfig": "libs/store/data-access-games/tsconfig.spec.json",
-            "setupFile": "libs/store/data-access-games/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/data-access-games/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/data-access-games"
+          ]
         }
       },
       "schematics": {
@@ -617,16 +674,20 @@
               "libs/store/data-access-cart/tsconfig.lib.json",
               "libs/store/data-access-cart/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/store/data-access-cart/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/store/data-access-cart/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/data-access-cart/jest.config.js",
-            "tsConfig": "libs/store/data-access-cart/tsconfig.spec.json",
-            "setupFile": "libs/store/data-access-cart/src/test-setup.ts"
-          }
+            "jestConfig": "libs/store/data-access-cart/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/store/data-access-cart"
+          ]
         }
       },
       "schematics": {
@@ -648,15 +709,20 @@
               "libs/shared/ui-tile/tsconfig.lib.json",
               "libs/shared/ui-tile/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/ui-tile/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/ui-tile/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/ui-tile/jest.config.js",
-            "tsConfig": "libs/shared/ui-tile/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/shared/ui-tile/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/shared/ui-tile"
+          ]
         }
       }
     },
@@ -667,23 +733,26 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/shared/assets/.eslintrc",
-            "tsConfig": [
-              "libs/shared/assets/tsconfig.lib.json",
-              "libs/shared/assets/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/shared/assets/**"]
+            "lintFilePatterns": [
+              "libs/shared/assets/**/*.ts",
+              "libs/shared/assets/**/*.spec.ts",
+              "libs/shared/assets/**/*.spec.tsx",
+              "libs/shared/assets/**/*.spec.js",
+              "libs/shared/assets/**/*.spec.jsx",
+              "libs/shared/assets/**/*.d.ts"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/assets/jest.config.js",
-            "tsConfig": "libs/shared/assets/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/shared/assets/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/shared/assets"
+          ]
         }
       }
     },
@@ -694,15 +763,17 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@nrwl/linter:lint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "linter": "eslint",
-            "config": "libs/react-publish/.eslintrc",
-            "tsConfig": [
-              "libs/react-publish/tsconfig.lib.json",
-              "libs/react-publish/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/react-publish/**"]
+            "lintFilePatterns": [
+              "libs/react-publish/**/*.ts",
+              "libs/react-publish/**/*.tsx",
+              "libs/react-publish/**/*.spec.ts",
+              "libs/react-publish/**/*.spec.tsx",
+              "libs/react-publish/**/*.spec.js",
+              "libs/react-publish/**/*.spec.jsx",
+              "libs/react-publish/**/*.d.ts"
+            ]
           }
         },
         "build": {
@@ -719,9 +790,11 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/react-publish/jest.config.js",
-            "tsConfig": "libs/react-publish/tsconfig.spec.json"
-          }
+            "jestConfig": "libs/react-publish/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/react-publish"
+          ]
         }
       }
     },
@@ -732,7 +805,7 @@
       "prefix": "bghoard",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/angular-publish/tsconfig.lib.json",
             "project": "libs/angular-publish/ng-package.json"
@@ -745,16 +818,20 @@
               "libs/angular-publish/tsconfig.lib.json",
               "libs/angular-publish/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/angular-publish/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/angular-publish/**"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/angular-publish/jest.config.js",
-            "tsConfig": "libs/angular-publish/tsconfig.spec.json",
-            "setupFile": "libs/angular-publish/src/test-setup.ts"
-          }
+            "jestConfig": "libs/angular-publish/jest.config.js"
+          },
+          "outputs": [
+            "coverage/libs/angular-publish"
+          ]
         }
       },
       "schematics": {

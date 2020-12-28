@@ -1,9 +1,10 @@
 module.exports = {
-  name: 'review-feature-details',
-  preset: '../../../jest.config.js',
+  preset: '../../../jest.preset.js',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest'
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../../coverage/libs/review/feature-details'
+  coverageDirectory: '../../../coverage/libs/review/feature-details',
+  globals: { 'ts-jest': { tsConfig: '<rootDir>/tsconfig.spec.json' } },
+  displayName: 'review-feature-details',
 };

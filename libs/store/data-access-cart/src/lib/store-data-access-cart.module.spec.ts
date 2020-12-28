@@ -1,8 +1,8 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { StoreDataAccessCartModule } from './store-data-access-cart.module';
 
 describe('StoreDataAccessCartModule', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [StoreDataAccessCartModule]
     }).compileComponents();
