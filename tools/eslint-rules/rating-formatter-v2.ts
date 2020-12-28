@@ -1,8 +1,3 @@
-import {
-  Node,
-  ImportDeclaration
-} from '@typescript-eslint/typescript-estree/dist/ts-estree/ts-estree';
-
 export const rule = {
   name: 'rating-formatter-v2',
   meta: {

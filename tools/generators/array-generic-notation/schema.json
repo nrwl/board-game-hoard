@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "array-generic-notation",
+  "cli": "nx",
   "type": "object",
   "properties": {
     "name": {

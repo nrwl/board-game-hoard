@@ -1,18 +1,16 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
-import { addDepsToPackageJson, updateJsonInTree } from '@nrwl/workspace';
+import {
+  installPackagesTask,
+  readJson,
+  Tree
+} from '@nrwl/devkit';
 
-export default function(schema: any): Rule {
-  const dependencies = {};
-  const devDependencies = {
-    cowsay: '*'
+export default function(tree: Tree, schema: any) {
+  const packageJson = readJson(tree, 'package/json');
+  packageJson.devDependencies.cowsay = '*';
+  packageJson.scripts.cowsay = 'cowsay';
+  tree.write('package.json', JSON.stringify(packageJson, undefined, 2));
+
+  return () => {
+    installPackagesTask(tree);
   };
-  const shouldRunInstallTask = true;
-
-  return chain([
-    addDepsToPackageJson(dependencies, devDependencies, shouldRunInstallTask),
-    updateJsonInTree('package.json', json => {
-      json.scripts.cowsay = 'cowsay';
-      return json;
-    })
-  ]);
 }

@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "add-license",
+  "cli": "nx",
   "type": "object",
   "properties": {
     "name": {
