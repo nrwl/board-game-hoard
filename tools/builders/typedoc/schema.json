@@ -1,4 +1,5 @@
 {
+  "cli": "nx",
   "title": "Typedoc",
   "description": "Typedoc",
   "type": "object",

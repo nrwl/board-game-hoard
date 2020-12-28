@@ -1,34 +1,23 @@
-const { createBuilder } = require('@angular-devkit/architect');
-const { Observable } = require('rxjs');
-const { readWorkspaceJson } = require('@nrwl/workspace');
 const TypeDoc = require('typedoc');
 
-function run(options, context) {
-  return Observable.create(async observer => {
-    try {
-      const projectName = context.target.project;
-      const projectSourceRoot = readWorkspaceJson().projects[projectName].sourceRoot;
-      const projectRoot = readWorkspaceJson().projects[projectName].root;
-      // run the builder
-      const app = new TypeDoc.Application({
-          exclude: ['**/*.spec.tsx', '**/*.spec.ts'],
-          tsconfig: `${projectRoot}/tsconfig.json`
-      });
-      const project = app.convert(app.expandInputFiles([projectSourceRoot]));
-      if (project) {
-          app.generateDocs(project, options.outputDir);
-      }
+async function run(options, context) {
+  const projectName = context.projectName;
+  const projectSourceRoot = context.workspace.projects[projectName].sourceRoot;
+  const projectRoot = context.workspace.projects[projectName].root;
 
-      observer.next({ success: true });
-      observer.complete();
-    } catch (e) {
-      observer.error(
-        `ERROR: Something went wrong in the typedoc builder - ${e.message}`
-      );
-    }
+  // run the builder
+  const app = new TypeDoc.Application({
+    exclude: ['**/*.spec.tsx', '**/*.spec.ts'],
+    tsconfig: `${projectRoot}/tsconfig.json`,
   });
+  const project = app.convert(app.expandInputFiles([projectSourceRoot]));
+  if (project) {
+    app.generateDocs(project, options.outputDir);
+  }
+
+  return { success: true };
 }
 
 module.exports = {
-  default: createBuilder(run)
-}
+  default: run,
+};

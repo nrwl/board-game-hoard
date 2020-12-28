@@ -1,5 +1,5 @@
 import { Tree } from '@nrwl/devkit';
-import { libraryGenerator } from '@nrwl/workspace';
+import { wrapAngularDevkitSchematic } from '@nrwl/devkit/ngcli-adapter';
 import { SchematicOptions } from './schema';
 
 function getTags(schema: SchematicOptions): string {
@@ -7,7 +7,7 @@ function getTags(schema: SchematicOptions): string {
 }
 
 export default async function (tree: Tree, schema: SchematicOptions) {
-  await libraryGenerator(tree, {
+  await wrapAngularDevkitSchematic('@nrwl/workspace', 'lib')(tree, {
     name: schema.name,
     tags: getTags(schema),
   });
