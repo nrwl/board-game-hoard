@@ -1,15 +1,14 @@
-import { chain, externalSchematic, Rule } from '@angular-devkit/schematics';
+import { Tree } from '@nrwl/devkit';
+import { libraryGenerator } from '@nrwl/workspace';
 import { SchematicOptions } from './schema';
 
 function getTags(schema: SchematicOptions): string {
   return `type:${schema.type},scope:${schema.scope},platform:${schema.platform}`;
 }
 
-export default function(schema: SchematicOptions): Rule {
-  return chain([
-    externalSchematic('@nrwl/workspace', 'lib', {
-      name: schema.name,
-      tags: getTags(schema),
-    }),
-  ]);
+export default async function (tree: Tree, schema: SchematicOptions) {
+  await libraryGenerator(tree, {
+    name: schema.name,
+    tags: getTags(schema),
+  });
 }

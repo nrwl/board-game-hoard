@@ -1,17 +1,15 @@
 {
   "root": true,
+  "ignorePatterns": ["**/*"],
   "plugins": ["@nrwl/nx"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": "./tsconfig.*?.json"
-      },
-      "plugins": ["local-rules"],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
+            "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
               {
@@ -70,9 +68,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "parserOptions": {
-        "project": "./tsconfig.*?.json"
-      },
+      "parserOptions": { "project": "./tsconfig.*?.json" },
       "rules": {}
     },
     {

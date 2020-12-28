@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "id": "tagged-library",
+  "cli": "nx",
   "type": "object",
   "properties": {
     "name": {
@@ -14,12 +15,7 @@
     "type": {
       "type": "string",
       "description": "Type of the library",
-      "enum": [
-        "data-access",
-        "feature",
-        "ui",
-        "util"
-      ],
+      "enum": ["data-access", "feature", "ui", "util"],
       "default": "feature",
       "x-prompt": "What type of library is it?"
     },
@@ -32,11 +28,7 @@
     "platform": {
       "type": "string",
       "description": "Platform of the library",
-      "enum": [
-        "web",
-        "node",
-        "any"
-      ],
+      "enum": ["web", "node", "any"],
       "default": "web",
       "x-prompt": "What platform can this library run on?"
     }
