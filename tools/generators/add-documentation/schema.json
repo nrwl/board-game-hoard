@@ -1,7 +1,6 @@
 {
-  "$schema": "http://json-schema.org/schema",
-  "id": "add-documentation",
   "cli": "nx",
+  "id": "add-documentation",
   "type": "object",
   "properties": {
     "name": {
@@ -21,12 +20,8 @@
     "favoriteColor": {
       "type": "string",
       "description": "The author's favorite color",
-      "enum": [
-        "brown",
-        "red",
-        "purple"
-      ],
       "default": "red",
+      "enum": ["brown", "red", "purple"],
       "x-prompt": "What is your favorite color?"
     }
   },

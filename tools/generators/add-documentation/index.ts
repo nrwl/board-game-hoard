@@ -1,22 +1,18 @@
-import { generateFiles, readProjectConfiguration, Tree } from '@nrwl/devkit';
+import { Tree, readProjectConfiguration, generateFiles } from '@nrwl/devkit';
 import { stringUtils } from '@nrwl/workspace';
 import { join } from 'path';
-import { SchematicOptions } from './schema';
+import { GeneratorOptions } from './schema';
 
-export default async function (host: Tree, options: SchematicOptions) {
-  console.debug('adding documentation file to lib');
+export default async function (host: Tree, schema: GeneratorOptions) {
+  console.log('adding documentation to library');
 
-  generateFiles(
-    host,
-    join(__dirname, 'files'),
-    readProjectConfiguration(host, options.name).root,
-    {
-      ...options,
-      projectName: options.name,
-      dasherize: stringUtils.dasherize,
-      template: '',
-    }
-  );
-
-  return;
+  const filesPath = join(__dirname, 'files');
+  const destinationPath = readProjectConfiguration(host, schema.name).root;
+  generateFiles(host, filesPath, destinationPath, {
+    projectName: schema.name,
+    author: schema.author,
+    favoriteColor: schema.favoriteColor,
+    dasherize: stringUtils.dasherize,
+    template: '',
+  });
 }
