@@ -30,9 +30,6 @@
             "jestConfig": "libs/angular-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/angular-publish"]
-        },
-        "version": {
-          "executor": "@jscutlery/semver:version"
         }
       },
       "generators": {
@@ -161,9 +158,6 @@
             "jestConfig": "libs/react-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/react-publish"]
-        },
-        "version": {
-          "executor": "@jscutlery/semver:version"
         }
       }
     },
