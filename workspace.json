@@ -1,21 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "projects": {
     "angular-publish": {
       "projectType": "library",
       "root": "libs/angular-publish",
       "sourceRoot": "libs/angular-publish/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "executor": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "libs/angular-publish/tsconfig.lib.json",
             "project": "libs/angular-publish/ng-package.json"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/angular-publish/tsconfig.lib.json",
@@ -25,17 +25,27 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/angular-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/angular-publish"]
         },
         "version": {
-          "builder": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "postTargets": ["angular-publish:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "tag": "${tag}",
+            "files": ["./libs/angular-publish/CHANGELOG.md"]
+          }
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -46,10 +56,10 @@
       "sourceRoot": "apps/api/src",
       "projectType": "application",
       "prefix": "api",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "build": {
-          "builder": "@nrwl/node:build",
+          "executor": "@nrwl/node:build",
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
@@ -72,13 +82,13 @@
           "outputs": ["{options.outputPath}"]
         },
         "serve": {
-          "builder": "@nrwl/node:execute",
+          "executor": "@nrwl/node:execute",
           "options": {
             "buildTarget": "api:build"
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/api/**/*.ts",
@@ -88,7 +98,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/api/jest.config.js"
           },
@@ -100,10 +110,10 @@
       "root": "libs/api-interfaces",
       "sourceRoot": "libs/api-interfaces/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/api-interfaces/**/*.ts",
@@ -116,7 +126,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/api-interfaces/jest.config.js"
           },
@@ -128,10 +138,10 @@
       "root": "libs/react-publish",
       "sourceRoot": "libs/react-publish/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/react-publish/**/*.ts",
@@ -145,7 +155,7 @@
           }
         },
         "build": {
-          "builder": "@nrwl/web:bundle",
+          "executor": "@nrwl/web:bundle",
           "options": {
             "outputPath": "dist/libs/react-publish",
             "tsConfig": "libs/react-publish/tsconfig.lib.json",
@@ -156,14 +166,24 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/react-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/react-publish"]
         },
         "version": {
-          "builder": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "postTargets": ["react-publish:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "tag": "${tag}",
+            "files": ["./libs/react-publish/CHANGELOG.md"]
+          }
         }
       }
     },
@@ -171,10 +191,10 @@
       "root": "apps/review",
       "sourceRoot": "apps/review/src",
       "projectType": "application",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "build": {
-          "builder": "@nrwl/web:build",
+          "executor": "@nrwl/web:build",
           "options": {
             "differentialLoading": false,
             "outputPath": "dist/apps/review",
@@ -222,7 +242,7 @@
           "outputs": ["{options.outputPath}"]
         },
         "serve": {
-          "builder": "@nrwl/web:dev-server",
+          "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "review:build",
             "proxyConfig": "apps/review/proxy.conf.json"
@@ -234,7 +254,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/review/**/*.ts",
@@ -248,14 +268,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/review/jest.config.js"
           },
           "outputs": ["coverage/apps/review"]
         },
         "doc": {
-          "builder": "./tools/builders:typedoc",
+          "executor": "./tools/builders:typedoc",
           "options": {
             "outputDir": "docs/review"
           }
@@ -266,10 +286,10 @@
       "root": "libs/review/data-access-games",
       "sourceRoot": "libs/review/data-access-games/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/review/data-access-games/**/*.ts",
@@ -283,7 +303,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/review/data-access-games/jest.config.js"
           },
@@ -295,9 +315,9 @@
       "root": "apps/review-e2e",
       "sourceRoot": "apps/review-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/review-e2e/cypress.json",
             "tsConfig": "apps/review-e2e/tsconfig.e2e.json",
@@ -310,7 +330,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/review-e2e/src/**/*.ts"]
           }
@@ -321,10 +341,10 @@
       "root": "libs/review/feature-details",
       "sourceRoot": "libs/review/feature-details/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/review/feature-details/**/*.ts",
@@ -338,7 +358,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/review/feature-details/jest.config.js"
           },
@@ -350,10 +370,10 @@
       "root": "libs/review/feature-list",
       "sourceRoot": "libs/review/feature-list/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/review/feature-list/**/*.ts",
@@ -367,7 +387,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/review/feature-list/jest.config.js"
           },
@@ -379,10 +399,10 @@
       "root": "libs/shared/assets",
       "sourceRoot": "libs/shared/assets/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/assets/**/*.ts",
@@ -395,7 +415,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/assets/jest.config.js"
           },
@@ -407,10 +427,10 @@
       "root": "libs/shared/ui-tile",
       "sourceRoot": "libs/shared/ui-tile/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/shared/ui-tile/tsconfig.lib.json",
@@ -420,7 +440,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/ui-tile/jest.config.js"
           },
@@ -432,10 +452,10 @@
       "root": "libs/shared/util-formatters",
       "sourceRoot": "libs/shared/util-formatters/src",
       "projectType": "library",
-      "schematics": {},
-      "architect": {
+      "generators": {},
+      "targets": {
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/util-formatters/**/*.ts",
@@ -449,7 +469,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/shared/util-formatters/jest.config.js"
           },
@@ -459,7 +479,7 @@
     },
     "store": {
       "projectType": "application",
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
@@ -467,9 +487,9 @@
       "root": "apps/store",
       "sourceRoot": "apps/store/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/apps/store",
             "index": "apps/store/src/index.html",
@@ -517,7 +537,7 @@
           "outputs": ["{options.outputPath}"]
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "store:build",
             "proxyConfig": "apps/review/proxy.conf.json"
@@ -529,13 +549,13 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "store:build"
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "apps/store/tsconfig.app.json",
@@ -545,14 +565,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/store/jest.config.js"
           },
           "outputs": ["coverage/apps/store"]
         },
         "doc": {
-          "builder": "./tools/builders:typedoc",
+          "executor": "./tools/builders:typedoc",
           "options": {
             "outputDir": "docs/store"
           }
@@ -564,9 +584,9 @@
       "root": "libs/store/data-access-cart",
       "sourceRoot": "libs/store/data-access-cart/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/data-access-cart/tsconfig.lib.json",
@@ -576,14 +596,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/data-access-cart/jest.config.js"
           },
           "outputs": ["coverage/libs/store/data-access-cart"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -594,9 +614,9 @@
       "root": "libs/store/data-access-games",
       "sourceRoot": "libs/store/data-access-games/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/data-access-games/tsconfig.lib.json",
@@ -609,14 +629,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/data-access-games/jest.config.js"
           },
           "outputs": ["coverage/libs/store/data-access-games"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -626,9 +646,9 @@
       "root": "apps/store-e2e",
       "sourceRoot": "apps/store-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/store-e2e/cypress.json",
             "tsConfig": "apps/store-e2e/tsconfig.e2e.json",
@@ -641,7 +661,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/store-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/store-e2e/**"]
@@ -654,9 +674,9 @@
       "root": "libs/store/feature-cart",
       "sourceRoot": "libs/store/feature-cart/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/feature-cart/tsconfig.lib.json",
@@ -666,14 +686,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/feature-cart/jest.config.js"
           },
           "outputs": ["coverage/libs/store/feature-cart"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -684,9 +704,9 @@
       "root": "libs/store/feature-details",
       "sourceRoot": "libs/store/feature-details/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/feature-details/tsconfig.lib.json",
@@ -696,14 +716,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/feature-details/jest.config.js"
           },
           "outputs": ["coverage/libs/store/feature-details"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -714,9 +734,9 @@
       "root": "libs/store/feature-list",
       "sourceRoot": "libs/store/feature-list/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/feature-list/tsconfig.lib.json",
@@ -726,14 +746,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/feature-list/jest.config.js"
           },
           "outputs": ["coverage/libs/store/feature-list"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -744,9 +764,9 @@
       "root": "libs/store/ui-formatters",
       "sourceRoot": "libs/store/ui-formatters/src",
       "prefix": "bghoard",
-      "architect": {
+      "targets": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "executor": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
               "libs/store/ui-formatters/tsconfig.lib.json",
@@ -756,14 +776,14 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/store/ui-formatters/jest.config.js"
           },
           "outputs": ["coverage/libs/store/ui-formatters"]
         }
       },
-      "schematics": {
+      "generators": {
         "@nrwl/angular:component": {
           "styleext": "scss"
         }
@@ -773,7 +793,7 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
-  "schematics": {
+  "generators": {
     "@nrwl/workspace": {
       "library": {
         "linter": "eslint"
