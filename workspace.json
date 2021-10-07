@@ -30,6 +30,9 @@
             "jestConfig": "libs/angular-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/angular-publish"]
+        },
+        "version": {
+          "builder": "@jscutlery/semver:version"
         }
       },
       "schematics": {
@@ -158,6 +161,9 @@
             "jestConfig": "libs/react-publish/jest.config.js"
           },
           "outputs": ["coverage/libs/react-publish"]
+        },
+        "version": {
+          "builder": "@jscutlery/semver:version"
         }
       }
     },
