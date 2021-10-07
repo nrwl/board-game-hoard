@@ -173,7 +173,17 @@
           "outputs": ["coverage/libs/react-publish"]
         },
         "version": {
-          "executor": "@jscutlery/semver:version"
+          "executor": "@jscutlery/semver:version",
+          "options": {
+            "postTargets": ["react-publish:github"]
+          }
+        },
+        "github": {
+          "executor": "@jscutlery/semver:github",
+          "options": {
+            "tag": "${tag}",
+            "files": ["./libs/react-publish/CHANGELOG.md"]
+          }
         }
       }
     },
