@@ -9,17 +9,8 @@
     ".eslintrc.json": "*"
   },
   "projects": {
-    "review": {
-      "tags": [
-        "type:app",
-        "scope:review",
-        "platform:web",
-        "stability:production"
-      ],
-      "implicitDependencies": ["shared-assets"]
-    },
-    "review-e2e": {
-      "tags": ["type:e2e", "scope:review", "stability:production"]
+    "angular-publish": {
+      "tags": []
     },
     "api": {
       "tags": ["type:app", "platform:node", "stability:production"]
@@ -32,17 +23,32 @@
         "stability:production"
       ]
     },
-    "shared-util-formatters": {
+    "react-publish": {
+      "tags": []
+    },
+    "review": {
       "tags": [
-        "type:util",
-        "scope:shared",
+        "type:app",
+        "scope:review",
         "platform:web",
         "stability:production"
-      ]
+      ],
+      "implicitDependencies": ["shared-assets"]
     },
     "review-data-access-games": {
       "tags": [
         "type:data-access",
+        "scope:review",
+        "platform:web",
+        "stability:production"
+      ]
+    },
+    "review-e2e": {
+      "tags": ["type:e2e", "scope:review", "stability:production"]
+    },
+    "review-feature-details": {
+      "tags": [
+        "type:feature",
         "scope:review",
         "platform:web",
         "stability:production"
@@ -56,16 +62,24 @@
         "stability:production"
       ]
     },
-    "review-feature-details": {
+    "shared-assets": {
+      "tags": ["type:util", "scope:shared", "stability:production"]
+    },
+    "shared-ui-tile": {
       "tags": [
-        "type:feature",
-        "scope:review",
+        "type:ui",
+        "scope:shared",
         "platform:web",
         "stability:production"
       ]
     },
-    "store-e2e": {
-      "tags": ["type:e2e", "scope:store", "stability:production"]
+    "shared-util-formatters": {
+      "tags": [
+        "type:util",
+        "scope:shared",
+        "platform:web",
+        "stability:production"
+      ]
     },
     "store": {
       "tags": [
@@ -76,7 +90,26 @@
       ],
       "implicitDependencies": ["shared-assets"]
     },
-    "store-feature-list": {
+    "store-data-access-cart": {
+      "tags": [
+        "type:data-access",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
+    },
+    "store-data-access-games": {
+      "tags": [
+        "type:data-access",
+        "scope:store",
+        "platform:web",
+        "stability:production"
+      ]
+    },
+    "store-e2e": {
+      "tags": ["type:e2e", "scope:store", "stability:production"]
+    },
+    "store-feature-cart": {
       "tags": [
         "type:feature",
         "scope:store",
@@ -92,7 +125,7 @@
         "stability:production"
       ]
     },
-    "store-feature-cart": {
+    "store-feature-list": {
       "tags": [
         "type:feature",
         "scope:store",
@@ -102,39 +135,6 @@
     },
     "store-ui-formatters": {
       "tags": ["type:ui", "scope:store", "platform:web", "stability:production"]
-    },
-    "store-data-access-games": {
-      "tags": [
-        "type:data-access",
-        "scope:store",
-        "platform:web",
-        "stability:production"
-      ]
-    },
-    "store-data-access-cart": {
-      "tags": [
-        "type:data-access",
-        "scope:store",
-        "platform:web",
-        "stability:production"
-      ]
-    },
-    "shared-ui-tile": {
-      "tags": [
-        "type:ui",
-        "scope:shared",
-        "platform:web",
-        "stability:production"
-      ]
-    },
-    "shared-assets": {
-      "tags": ["type:util", "scope:shared", "stability:production"]
-    },
-    "react-publish": {
-      "tags": []
-    },
-    "angular-publish": {
-      "tags": []
     }
   },
   "affected": {

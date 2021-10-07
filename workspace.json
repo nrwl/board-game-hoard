@@ -1,6 +1,166 @@
 {
   "version": 1,
   "projects": {
+    "angular-publish": {
+      "projectType": "library",
+      "root": "libs/angular-publish",
+      "sourceRoot": "libs/angular-publish/src",
+      "prefix": "bghoard",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "libs/angular-publish/tsconfig.lib.json",
+            "project": "libs/angular-publish/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/angular-publish/tsconfig.lib.json",
+              "libs/angular-publish/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/angular-publish/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/angular-publish/jest.config.js"
+          },
+          "outputs": ["coverage/libs/angular-publish"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/api/**/*.ts",
+              "apps/api/**/*.spec.ts",
+              "apps/api/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js"
+          },
+          "outputs": ["coverage/apps/api"]
+        }
+      }
+    },
+    "api-interfaces": {
+      "root": "libs/api-interfaces",
+      "sourceRoot": "libs/api-interfaces/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/api-interfaces/**/*.ts",
+              "libs/api-interfaces/**/*.spec.ts",
+              "libs/api-interfaces/**/*.spec.tsx",
+              "libs/api-interfaces/**/*.spec.js",
+              "libs/api-interfaces/**/*.spec.jsx",
+              "libs/api-interfaces/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/api-interfaces/jest.config.js"
+          },
+          "outputs": ["coverage/libs/api-interfaces"]
+        }
+      }
+    },
+    "react-publish": {
+      "root": "libs/react-publish",
+      "sourceRoot": "libs/react-publish/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/react-publish/**/*.ts",
+              "libs/react-publish/**/*.tsx",
+              "libs/react-publish/**/*.spec.ts",
+              "libs/react-publish/**/*.spec.tsx",
+              "libs/react-publish/**/*.spec.js",
+              "libs/react-publish/**/*.spec.jsx",
+              "libs/react-publish/**/*.d.ts"
+            ]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:bundle",
+          "options": {
+            "outputPath": "dist/libs/react-publish",
+            "tsConfig": "libs/react-publish/tsconfig.lib.json",
+            "project": "libs/react-publish/package.json",
+            "entryFile": "libs/react-publish/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/react-publish/jest.config.js"
+          },
+          "outputs": ["coverage/libs/react-publish"]
+        }
+      }
+    },
     "review": {
       "root": "apps/review",
       "sourceRoot": "apps/review/src",
@@ -53,9 +213,7 @@
               ]
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ]
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@nrwl/web:dev-server",
@@ -88,165 +246,13 @@
           "options": {
             "jestConfig": "apps/review/jest.config.js"
           },
-          "outputs": [
-            "coverage/apps/review"
-          ]
+          "outputs": ["coverage/apps/review"]
         },
         "doc": {
           "builder": "./tools/builders:typedoc",
           "options": {
             "outputDir": "docs/review"
           }
-        }
-      }
-    },
-    "review-e2e": {
-      "root": "apps/review-e2e",
-      "sourceRoot": "apps/review-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/review-e2e/cypress.json",
-            "tsConfig": "apps/review-e2e/tsconfig.e2e.json",
-            "devServerTarget": "review:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "review:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/review-e2e/src/**/*.ts"
-            ]
-          }
-        }
-      }
-    },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
-      "projectType": "application",
-      "prefix": "api",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          },
-          "outputs": [
-            "{options.outputPath}"
-          ]
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/api/**/*.ts",
-              "apps/api/**/*.spec.ts",
-              "apps/api/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/api/jest.config.js"
-          },
-          "outputs": [
-            "coverage/apps/api"
-          ]
-        }
-      }
-    },
-    "api-interfaces": {
-      "root": "libs/api-interfaces",
-      "sourceRoot": "libs/api-interfaces/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api-interfaces/**/*.ts",
-              "libs/api-interfaces/**/*.spec.ts",
-              "libs/api-interfaces/**/*.spec.tsx",
-              "libs/api-interfaces/**/*.spec.js",
-              "libs/api-interfaces/**/*.spec.jsx",
-              "libs/api-interfaces/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/api-interfaces/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/api-interfaces"
-          ]
-        }
-      }
-    },
-    "shared-util-formatters": {
-      "root": "libs/shared/util-formatters",
-      "sourceRoot": "libs/shared/util-formatters/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/util-formatters/**/*.ts",
-              "libs/shared/util-formatters/**/*.tsx",
-              "libs/shared/util-formatters/**/*.spec.ts",
-              "libs/shared/util-formatters/**/*.spec.tsx",
-              "libs/shared/util-formatters/**/*.spec.js",
-              "libs/shared/util-formatters/**/*.spec.jsx",
-              "libs/shared/util-formatters/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/util-formatters/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/shared/util-formatters"
-          ]
         }
       }
     },
@@ -275,40 +281,33 @@
           "options": {
             "jestConfig": "libs/review/data-access-games/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/review/data-access-games"
-          ]
+          "outputs": ["coverage/libs/review/data-access-games"]
         }
       }
     },
-    "review-feature-list": {
-      "root": "libs/review/feature-list",
-      "sourceRoot": "libs/review/feature-list/src",
-      "projectType": "library",
-      "schematics": {},
+    "review-e2e": {
+      "root": "apps/review-e2e",
+      "sourceRoot": "apps/review-e2e/src",
+      "projectType": "application",
       "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/review-e2e/cypress.json",
+            "tsConfig": "apps/review-e2e/tsconfig.e2e.json",
+            "devServerTarget": "review:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "review:serve:production"
+            }
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/review/feature-list/**/*.ts",
-              "libs/review/feature-list/**/*.tsx",
-              "libs/review/feature-list/**/*.spec.ts",
-              "libs/review/feature-list/**/*.spec.tsx",
-              "libs/review/feature-list/**/*.spec.js",
-              "libs/review/feature-list/**/*.spec.jsx",
-              "libs/review/feature-list/**/*.d.ts"
-            ]
+            "lintFilePatterns": ["apps/review-e2e/src/**/*.ts"]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/review/feature-list/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/review/feature-list"
-          ]
         }
       }
     },
@@ -337,9 +336,118 @@
           "options": {
             "jestConfig": "libs/review/feature-details/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/review/feature-details"
-          ]
+          "outputs": ["coverage/libs/review/feature-details"]
+        }
+      }
+    },
+    "review-feature-list": {
+      "root": "libs/review/feature-list",
+      "sourceRoot": "libs/review/feature-list/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/review/feature-list/**/*.ts",
+              "libs/review/feature-list/**/*.tsx",
+              "libs/review/feature-list/**/*.spec.ts",
+              "libs/review/feature-list/**/*.spec.tsx",
+              "libs/review/feature-list/**/*.spec.js",
+              "libs/review/feature-list/**/*.spec.jsx",
+              "libs/review/feature-list/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/review/feature-list/jest.config.js"
+          },
+          "outputs": ["coverage/libs/review/feature-list"]
+        }
+      }
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/assets/**/*.ts",
+              "libs/shared/assets/**/*.spec.ts",
+              "libs/shared/assets/**/*.spec.tsx",
+              "libs/shared/assets/**/*.spec.js",
+              "libs/shared/assets/**/*.spec.jsx",
+              "libs/shared/assets/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/assets/jest.config.js"
+          },
+          "outputs": ["coverage/libs/shared/assets"]
+        }
+      }
+    },
+    "shared-ui-tile": {
+      "root": "libs/shared/ui-tile",
+      "sourceRoot": "libs/shared/ui-tile/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui-tile/tsconfig.lib.json",
+              "libs/shared/ui-tile/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui-tile/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui-tile/jest.config.js"
+          },
+          "outputs": ["coverage/libs/shared/ui-tile"]
+        }
+      }
+    },
+    "shared-util-formatters": {
+      "root": "libs/shared/util-formatters",
+      "sourceRoot": "libs/shared/util-formatters/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util-formatters/**/*.ts",
+              "libs/shared/util-formatters/**/*.tsx",
+              "libs/shared/util-formatters/**/*.spec.ts",
+              "libs/shared/util-formatters/**/*.spec.tsx",
+              "libs/shared/util-formatters/**/*.spec.js",
+              "libs/shared/util-formatters/**/*.spec.jsx",
+              "libs/shared/util-formatters/**/*.d.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-formatters/jest.config.js"
+          },
+          "outputs": ["coverage/libs/shared/util-formatters"]
         }
       }
     },
@@ -372,9 +480,7 @@
                 "output": "assets"
               }
             ],
-            "styles": [
-              "apps/store/src/styles.scss"
-            ],
+            "styles": ["apps/store/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -402,9 +508,7 @@
               ]
             }
           },
-          "outputs": [
-            "{options.outputPath}"
-          ]
+          "outputs": ["{options.outputPath}"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -431,10 +535,7 @@
               "apps/store/tsconfig.app.json",
               "apps/store/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/store/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/store/**"]
           }
         },
         "test": {
@@ -442,9 +543,7 @@
           "options": {
             "jestConfig": "apps/store/jest.config.js"
           },
-          "outputs": [
-            "coverage/apps/store"
-          ]
+          "outputs": ["coverage/apps/store"]
         },
         "doc": {
           "builder": "./tools/builders:typedoc",
@@ -454,170 +553,28 @@
         }
       }
     },
-    "store-e2e": {
-      "root": "apps/store-e2e",
-      "sourceRoot": "apps/store-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/store-e2e/cypress.json",
-            "tsConfig": "apps/store-e2e/tsconfig.e2e.json",
-            "devServerTarget": "store:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "store:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/store-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/store-e2e/**"
-            ]
-          }
-        }
-      }
-    },
-    "store-feature-list": {
+    "store-data-access-cart": {
       "projectType": "library",
-      "root": "libs/store/feature-list",
-      "sourceRoot": "libs/store/feature-list/src",
+      "root": "libs/store/data-access-cart",
+      "sourceRoot": "libs/store/data-access-cart/src",
       "prefix": "bghoard",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/store/feature-list/tsconfig.lib.json",
-              "libs/store/feature-list/tsconfig.spec.json"
+              "libs/store/data-access-cart/tsconfig.lib.json",
+              "libs/store/data-access-cart/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/feature-list/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/data-access-cart/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/feature-list/jest.config.js"
+            "jestConfig": "libs/store/data-access-cart/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/store/feature-list"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "store-feature-details": {
-      "projectType": "library",
-      "root": "libs/store/feature-details",
-      "sourceRoot": "libs/store/feature-details/src",
-      "prefix": "bghoard",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/store/feature-details/tsconfig.lib.json",
-              "libs/store/feature-details/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/feature-details/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/store/feature-details/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/store/feature-details"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "store-feature-cart": {
-      "projectType": "library",
-      "root": "libs/store/feature-cart",
-      "sourceRoot": "libs/store/feature-cart/src",
-      "prefix": "bghoard",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/store/feature-cart/tsconfig.lib.json",
-              "libs/store/feature-cart/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/feature-cart/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/store/feature-cart/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/store/feature-cart"
-          ]
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
-    "store-ui-formatters": {
-      "projectType": "library",
-      "root": "libs/store/ui-formatters",
-      "sourceRoot": "libs/store/ui-formatters/src",
-      "prefix": "bghoard",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/store/ui-formatters/tsconfig.lib.json",
-              "libs/store/ui-formatters/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/ui-formatters/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/store/ui-formatters/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/store/ui-formatters"
-          ]
+          "outputs": ["coverage/libs/store/data-access-cart"]
         }
       },
       "schematics": {
@@ -650,9 +607,7 @@
           "options": {
             "jestConfig": "libs/store/data-access-games/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/store/data-access-games"
-          ]
+          "outputs": ["coverage/libs/store/data-access-games"]
         }
       },
       "schematics": {
@@ -661,33 +616,55 @@
         }
       }
     },
-    "store-data-access-cart": {
+    "store-e2e": {
+      "root": "apps/store-e2e",
+      "sourceRoot": "apps/store-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/store-e2e/cypress.json",
+            "tsConfig": "apps/store-e2e/tsconfig.e2e.json",
+            "devServerTarget": "store:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "store:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/store-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/store-e2e/**"]
+          }
+        }
+      }
+    },
+    "store-feature-cart": {
       "projectType": "library",
-      "root": "libs/store/data-access-cart",
-      "sourceRoot": "libs/store/data-access-cart/src",
+      "root": "libs/store/feature-cart",
+      "sourceRoot": "libs/store/feature-cart/src",
       "prefix": "bghoard",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/store/data-access-cart/tsconfig.lib.json",
-              "libs/store/data-access-cart/tsconfig.spec.json"
+              "libs/store/feature-cart/tsconfig.lib.json",
+              "libs/store/feature-cart/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/store/data-access-cart/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/feature-cart/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/store/data-access-cart/jest.config.js"
+            "jestConfig": "libs/store/feature-cart/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/store/data-access-cart"
-          ]
+          "outputs": ["coverage/libs/store/feature-cart"]
         }
       },
       "schematics": {
@@ -696,142 +673,88 @@
         }
       }
     },
-    "shared-ui-tile": {
-      "root": "libs/shared/ui-tile",
-      "sourceRoot": "libs/shared/ui-tile/src",
+    "store-feature-details": {
       "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/shared/ui-tile/tsconfig.lib.json",
-              "libs/shared/ui-tile/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/ui-tile/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/ui-tile/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/shared/ui-tile"
-          ]
-        }
-      }
-    },
-    "shared-assets": {
-      "root": "libs/shared/assets",
-      "sourceRoot": "libs/shared/assets/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/assets/**/*.ts",
-              "libs/shared/assets/**/*.spec.ts",
-              "libs/shared/assets/**/*.spec.tsx",
-              "libs/shared/assets/**/*.spec.js",
-              "libs/shared/assets/**/*.spec.jsx",
-              "libs/shared/assets/**/*.d.ts"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/shared/assets/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/shared/assets"
-          ]
-        }
-      }
-    },
-    "react-publish": {
-      "root": "libs/react-publish",
-      "sourceRoot": "libs/react-publish/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/react-publish/**/*.ts",
-              "libs/react-publish/**/*.tsx",
-              "libs/react-publish/**/*.spec.ts",
-              "libs/react-publish/**/*.spec.tsx",
-              "libs/react-publish/**/*.spec.js",
-              "libs/react-publish/**/*.spec.jsx",
-              "libs/react-publish/**/*.d.ts"
-            ]
-          }
-        },
-        "build": {
-          "builder": "@nrwl/web:bundle",
-          "options": {
-            "outputPath": "dist/libs/react-publish",
-            "tsConfig": "libs/react-publish/tsconfig.lib.json",
-            "project": "libs/react-publish/package.json",
-            "entryFile": "libs/react-publish/src/index.ts",
-            "babelConfig": "@nrwl/react/plugins/bundle-babel",
-            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/react-publish/jest.config.js"
-          },
-          "outputs": [
-            "coverage/libs/react-publish"
-          ]
-        }
-      }
-    },
-    "angular-publish": {
-      "projectType": "library",
-      "root": "libs/angular-publish",
-      "sourceRoot": "libs/angular-publish/src",
+      "root": "libs/store/feature-details",
+      "sourceRoot": "libs/store/feature-details/src",
       "prefix": "bghoard",
       "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "libs/angular-publish/tsconfig.lib.json",
-            "project": "libs/angular-publish/ng-package.json"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/angular-publish/tsconfig.lib.json",
-              "libs/angular-publish/tsconfig.spec.json"
+              "libs/store/feature-details/tsconfig.lib.json",
+              "libs/store/feature-details/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/angular-publish/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/store/feature-details/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/angular-publish/jest.config.js"
+            "jestConfig": "libs/store/feature-details/jest.config.js"
           },
-          "outputs": [
-            "coverage/libs/angular-publish"
-          ]
+          "outputs": ["coverage/libs/store/feature-details"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-feature-list": {
+      "projectType": "library",
+      "root": "libs/store/feature-list",
+      "sourceRoot": "libs/store/feature-list/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/feature-list/tsconfig.lib.json",
+              "libs/store/feature-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/feature-list/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/feature-list/jest.config.js"
+          },
+          "outputs": ["coverage/libs/store/feature-list"]
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "store-ui-formatters": {
+      "projectType": "library",
+      "root": "libs/store/ui-formatters",
+      "sourceRoot": "libs/store/ui-formatters/src",
+      "prefix": "bghoard",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/store/ui-formatters/tsconfig.lib.json",
+              "libs/store/ui-formatters/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/store/ui-formatters/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/store/ui-formatters/jest.config.js"
+          },
+          "outputs": ["coverage/libs/store/ui-formatters"]
         }
       },
       "schematics": {

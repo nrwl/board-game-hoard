@@ -18,33 +18,33 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@bghoard/angular-publish": ["libs/angular-publish/src/index.ts"],
       "@bghoard/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@bghoard/shared/util-formatters": [
-        "libs/shared/util-formatters/src/index.ts"
-      ],
+      "@bghoard/react-publish": ["libs/react-publish/src/index.ts"],
       "@bghoard/review/data-access-games": [
         "libs/review/data-access-games/src/index.ts"
       ],
-      "@bghoard/review/feature-list": ["libs/review/feature-list/src/index.ts"],
       "@bghoard/review/feature-details": [
         "libs/review/feature-details/src/index.ts"
       ],
-      "@bghoard/store/feature-list": ["libs/store/feature-list/src/index.ts"],
-      "@bghoard/store/feature-details": [
-        "libs/store/feature-details/src/index.ts"
-      ],
-      "@bghoard/store/feature-cart": ["libs/store/feature-cart/src/index.ts"],
-      "@bghoard/store/ui-formatters": ["libs/store/ui-formatters/src/index.ts"],
-      "@bghoard/store/data-access-games": [
-        "libs/store/data-access-games/src/index.ts"
+      "@bghoard/review/feature-list": ["libs/review/feature-list/src/index.ts"],
+      "@bghoard/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@bghoard/shared/ui-tile": ["libs/shared/ui-tile/src/index.ts"],
+      "@bghoard/shared/util-formatters": [
+        "libs/shared/util-formatters/src/index.ts"
       ],
       "@bghoard/store/data-access-cart": [
         "libs/store/data-access-cart/src/index.ts"
       ],
-      "@bghoard/shared/ui-tile": ["libs/shared/ui-tile/src/index.ts"],
-      "@bghoard/shared/assets": ["libs/shared/assets/src/index.ts"],
-      "@bghoard/react-publish": ["libs/react-publish/src/index.ts"],
-      "@bghoard/angular-publish": ["libs/angular-publish/src/index.ts"]
+      "@bghoard/store/data-access-games": [
+        "libs/store/data-access-games/src/index.ts"
+      ],
+      "@bghoard/store/feature-cart": ["libs/store/feature-cart/src/index.ts"],
+      "@bghoard/store/feature-details": [
+        "libs/store/feature-details/src/index.ts"
+      ],
+      "@bghoard/store/feature-list": ["libs/store/feature-list/src/index.ts"],
+      "@bghoard/store/ui-formatters": ["libs/store/ui-formatters/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
