@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.1](https://github.com/nrwl/board-game-hoard/compare/angular-publish-1.0.0...angular-publish-1.0.1) (2021-10-08)
+
+
+
 # [1.0.0](https://github.com/nrwl/board-game-hoard/compare/angular-publish-0.0.3...angular-publish-1.0.0) (2021-10-08)
 
 
