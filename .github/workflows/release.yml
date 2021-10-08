@@ -20,6 +20,6 @@ jobs:
       - uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
-      - run: yarn nx affected -- --target=version --base=${{ env.NX_BASE }} --push --baseBranch master
+      - run: yarn nx affected -- --target=version --base=${{ env.NX_BASE }} --push --baseBranch=${{ env.NX_BASE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
