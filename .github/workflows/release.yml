@@ -3,7 +3,7 @@ name: default
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   release:
@@ -16,10 +16,10 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - run: yarn install --frozen-lockfile
+      - uses: bahmutov/npm-install@v1
       - uses: nrwl/nx-set-shas@v2
         with:
           main-branch-name: 'master'
-      - run: yarn nx affected --target=version --base=${{ env.NX_BASE }} --push --baseBranch master
+      - run: yarn nx affected -- --target=version --base=${{ env.NX_BASE }} --push --baseBranch=${{ env.NX_BASE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
