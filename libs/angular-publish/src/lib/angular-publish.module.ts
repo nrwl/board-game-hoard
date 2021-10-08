@@ -6,4 +6,4 @@ import { CommonModule } from '@angular/common';
 })
 export class AngularPublishModule {}
 
-// modified fix2
+// modified fix3
