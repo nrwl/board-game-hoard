@@ -3,7 +3,7 @@ name: default
 on:
   push:
     branches:
-      - 'semver-ci'
+      - 'main'
 
 jobs:
   release:
